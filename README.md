@@ -4,23 +4,36 @@
 
 Customer
 [
-     ID: Integer (Primary Key)
-     Name: String
+    
+	ID: Integer (Primary Key)
+    
+	Name: String
 ]
 
 Order
 [
-     ID: Integer (Primary Key)
-     Customer ID: Integer (Foreign Key)
+    
+	ID: Integer (Primary Key)
+	 
+    Customer ID: Integer (Foreign Key)
+	 
      Waiter: String
+	 
      Dishes: String
 ]
 
 Функції програми:
+
 Вставити запис.
+
 Видалити запис.
-Оновити запис.
+
+Оновити запис. 
+
 Прочитати запис.
+
 Підрахувати кількість записів.
+
 Підрахувати кількість підзаписів (кількість замовлень кожного клієнта).
+
 Показати всю інформацію про таблицю.
