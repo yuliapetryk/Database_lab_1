@@ -244,15 +244,31 @@ int main(int argc, const char* argv[]) {
     Array* slaveKeys = getKeysArray(orderTableName);
     Array* slaveEmptyPositions = getDeletedPositionsArray(orderTableName);
     char input[INPUT_MAX_LEN];
+    printf("Choose a command:\n");
+    printf("(1) insert-m\n");
+    printf("(2) insert-s\n");
+    printf("(3) count-m\n");
+    printf("(4) count-s\n");
+    printf("(5) count-m-s\n");
+    printf("(6) get-m\n");
+    printf("(7) get-s\n");
+    printf("(8) get-m-s\n");
+    printf("(9) del-m\n");
+    printf("(10) del-s\n");
+    printf("(11) update-m\n");
+    printf("(12) update-s\n");
+    printf("(13) clear\n");
+    printf("(14) utils-m\n");
+    printf("(15) utils-s\n");
+    printf("(16) stop\n");
     while (true) {
-       
         printf("%s: ", "Enter command");
         gets(input);
         while (strcmp(input, "") == 0)
         {
             gets(input);
         }
-        if (strcmp(input, "insert-m") == 0) {
+        if (strcmp(input, "1") == 0) {
             Customer* customer = inputCustomer();
             int* id = inputId();
             insert_m(customer, *id, masterKeys, masterEmptyPositions);
@@ -262,7 +278,7 @@ int main(int argc, const char* argv[]) {
 
         }
       
-        else if (strcmp(input, "insert-s") == 0) {
+        else if (strcmp(input, "2") == 0) {
             Order* order = inputOrder();
             int* id = inputId();
             insert_s(order, *id, masterKeys, slaveKeys, slaveEmptyPositions);
@@ -271,21 +287,21 @@ int main(int argc, const char* argv[]) {
             printf("Inserted successfully\n");
             
         }
-        else if (strcmp(input, "count-m") == 0) {
+        else if (strcmp(input, "3") == 0) {
             printf("%d\n", count_m(masterKeys));
            
         }
-        else if (strcmp(input, "count-s") == 0) {
+        else if (strcmp(input, "4") == 0) {
             printf("%d\n", count_s(slaveKeys));
             
         }
-        else if (strcmp(input, "count-m-s") == 0) {
+        else if (strcmp(input, "5") == 0) {
             int* id = inputId();
             printf("%d\n", count_m_s(*id, masterKeys, slaveKeys));
             free(id);
             
         }
-        else if (strcmp(input, "get-m") == 0) {
+        else if (strcmp(input, "6") == 0) {
             int* id = inputId();
             Customer* customer = get_m(*id, masterKeys);
             printCustomer(customer);
@@ -293,7 +309,7 @@ int main(int argc, const char* argv[]) {
             free(id);
             
         }
-        else if (strcmp(input, "get-s") == 0) {
+        else if (strcmp(input, "7") == 0) {
             int* id = inputId();
             Order* order = get_s(*id, slaveKeys);
             printOrder(order);
@@ -301,7 +317,7 @@ int main(int argc, const char* argv[]) {
             free(id);
             
         }
-        else if (strcmp(input, "get-m-s") == 0) {
+        else if (strcmp(input, "8") == 0) {
             int* id = inputId();
             Array* slaves = get_m_s(*id, masterKeys, slaveKeys);
             printArray(slaves);
@@ -309,21 +325,21 @@ int main(int argc, const char* argv[]) {
             free(id);
             
         }
-        else if (strcmp(input, "del-m") == 0) {
+        else if (strcmp(input, "9") == 0) {
             int* id = inputId();
             del_m(*id, masterKeys, masterEmptyPositions, slaveKeys, slaveEmptyPositions);
             free(id);
             printf("Deleted successfully\n");
             
         }
-        else if (strcmp(input, "del-s") == 0) {
+        else if (strcmp(input, "10") == 0) {
             int* id = inputId();
             del_s(*id, masterKeys, slaveKeys, slaveEmptyPositions);
             free(id);
             printf("Deleted successfully\n");
             
         }
-        else if (strcmp(input, "update-m") == 0) {
+        else if (strcmp(input, "11") == 0) {
             Customer* customer = inputCustomer();
             int* id = inputId();
             update_m(customer, *id, masterKeys);
@@ -332,7 +348,7 @@ int main(int argc, const char* argv[]) {
             printf("Updated successfully\n");
             
         }
-        else if (strcmp(input, "update-s") == 0) {
+        else if (strcmp(input, "12") == 0) {
             Order* order = inputOrder();
             int* id = inputId();
             update_s(order, *id, masterKeys, slaveKeys, slaveEmptyPositions);
@@ -341,23 +357,23 @@ int main(int argc, const char* argv[]) {
             printf("Updated successfully\n");
             
         }
-        else if (strcmp(input, "clear") == 0) {
+        else if (strcmp(input, "13") == 0) {
             clearAll(&masterKeys, &masterEmptyPositions, &slaveKeys, &slaveEmptyPositions);
             printf("Cleared successfully\n");
             
         }
-        else if (strcmp(input, "utils-m") == 0) {
+        else if (strcmp(input, "14") == 0) {
             Array* customers = getItems(customerTableName);
             printArray(customers);
             deleteArray(customers);
 
         }
-        else if (strcmp(input, "utils-s") == 0) {
+        else if (strcmp(input, "15") == 0) {
             Array* orders = getItems(orderTableName);
             printArray(orders);
             deleteArray(orders);
         }
-        else if (strcmp(input, "stop") == 0) {
+        else if (strcmp(input, "16") == 0) {
             break;
         }
 
